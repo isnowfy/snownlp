@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 import os
+import re
 import codecs
 
 import zh
@@ -21,3 +22,19 @@ def filter_stop(words):
 
 def zh2hans(sent):
     return zh.transfer(sent)
+
+
+def get_sentences(doc):
+    line_break = re.compile('[\r\n]')
+    delimiter = re.compile('[，。？！；]')
+    sentences = []
+    for line in line_break.split(doc):
+        line = line.strip()
+        if not line:
+            continue
+        for sent in delimiter.split(line):
+            sent = sent.strip()
+            if not sent:
+                continue
+            sentences.append(sent)
+    return sentences

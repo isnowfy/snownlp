@@ -8,7 +8,7 @@ class BM25(object):
 
     def __init__(self, docs):
         self.D = len(docs)
-        self.avgdl = 0
+        self.avgdl = sum(map(lambda x: len(x)+0.0, docs)) / self.D
         self.docs = docs
         self.f = []
         self.df = {}
@@ -30,7 +30,7 @@ class BM25(object):
                     self.df[k] = 0
                 self.df[k] += 1
         for k, v in self.df.iteritems():
-            self.idf[k] = math.log(self.d-v+0.5)-math.log(v+0.5)
+            self.idf[k] = math.log(self.D-v+0.5)-math.log(v+0.5)
 
     def sim(self, doc, index):
         score = 0
