@@ -4,13 +4,13 @@ from __future__ import unicode_literals
 
 import codecs
 
-import tnt
+from ..utils.tnt import TnT
 
 
 class Seg(object):
 
     def __init__(self):
-        self.segger = tnt.TnT()
+        self.segger = TnT()
 
     def train(self, file_name):
         fr = codecs.open(file_name, 'r', 'utf-8')

@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-import bm25
+from ..sim.bm25 import BM25
 
 
 class TextRank(object):
 
     def __init__(self, docs):
         self.docs = docs
-        self.bm25 = bm25.BM25(docs)
+        self.bm25 = BM25(docs)
         self.D = len(docs)
         self.d = 0.85
         self.weight = []
