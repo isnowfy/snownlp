@@ -53,5 +53,9 @@ if __name__ == '__main__':
         doc.append(words)
     rank = textrank.TextRank(doc)
     rank.solve()
-    for index in rank.top_index(10):
+    for index in rank.top_index(5):
         print sents[index]
+    keyword_rank = textrank.KeywordTextRank(doc)
+    keyword_rank.solve()
+    for w in keyword_rank.top_index(5):
+        print w
