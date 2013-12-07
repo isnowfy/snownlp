@@ -8,7 +8,7 @@ import codecs
 import zh
 
 stop_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                         'stopwords')
+                         'stopwords.txt')
 pinyin_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                            'pinyin.txt')
 stop = set()
