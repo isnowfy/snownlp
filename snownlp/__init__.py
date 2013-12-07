@@ -9,7 +9,7 @@ from .sim import bm25
 from .summary import textrank
 
 
-class Snownlp(object):
+class SnowNLP(object):
 
     def __init__(self, doc):
         self.doc = doc
