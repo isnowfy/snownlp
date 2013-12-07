@@ -40,3 +40,11 @@ class Sentiment(object):
         if ret == 'pos':
             return prob
         return 1-prob
+
+
+classifier = Sentiment()
+classifier.load()
+
+
+def classify(sent):
+    return classifier.classify(sent)

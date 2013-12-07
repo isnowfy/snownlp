@@ -53,5 +53,5 @@ def get_pinyin(word):
     ret = []
     for w in word:
         if w in pinyin:
-            ret.append(pinyin[w])
+            ret += pinyin[w]
     return ret
