@@ -5,9 +5,11 @@ Implementation of 'TnT - A Statisical Part of Speech Tagger'
 '''
 
 import heapq
+import marshal
 from math import log
 
 import frequency
+
 
 class TnT(object):
 
@@ -25,6 +27,27 @@ class TnT(object):
         self.tri = frequency.NormalProb()
         self.word = {}
         self.trans = {}
+
+    def save(self, fname):
+        d = {}
+        for k, v in self.__dict__.iteritems():
+            if isinstance(v, set):
+                d[k] = list(v)
+            elif hasattr(v, '__dict__'):
+                d[k] = v.__dict__
+            else:
+                d[k] = v
+        marshal.dump(d, open(fname, 'w'))
+
+    def load(self, fname):
+        d = marshal.load(open(fname, 'r'))
+        for k, v in d.iteritems():
+            if isinstance(self.__dict__[k], set):
+                self.__dict__[k] = set(v)
+            elif hasattr(self.__dict__[k], '__dict__'):
+                self.__dict__[k].__dict__ = v
+            else:
+                self.__dict__[k] = v
 
     def tnt_div(self, v1, v2):
         if v2 == 0:
@@ -60,8 +83,10 @@ class TnT(object):
         tl2 = 0.0
         tl3 = 0.0
         for now in self.tri.samples():
-            c3 = self.tnt_div(self.tri.get(now)[1]-1, self.bi.get(now[:2])[1]-1)
-            c2 = self.tnt_div(self.bi.get(now[1:])[1]-1, self.uni.get(now[1])[1]-1)
+            c3 = self.tnt_div(self.tri.get(now)[1]-1,
+                              self.bi.get(now[:2])[1]-1)
+            c2 = self.tnt_div(self.bi.get(now[1:])[1]-1,
+                              self.uni.get(now[1])[1]-1)
             c1 = self.tnt_div(self.uni.get(now[2])[1]-1, self.uni.getsum()-1)
             if c3 >= c1 and c3 >= c2:
                 tl3 += self.tri.get(now)[1]
@@ -72,8 +97,8 @@ class TnT(object):
         self.l1 = float(tl1)/(tl1+tl2+tl3)
         self.l2 = float(tl2)/(tl1+tl2+tl3)
         self.l3 = float(tl3)/(tl1+tl2+tl3)
-        for s1 in self.status|set(('BOS',)):
-            for s2 in self.status|set(('BOS',)):
+        for s1 in self.status | set(('BOS',)):
+            for s2 in self.status | set(('BOS',)):
                 for s3 in self.status:
                     uni = self.l1*self.uni.freq(s3)
                     bi = self.tnt_div(self.l2*self.bi.get((s2, s3))[1],
@@ -93,9 +118,10 @@ class TnT(object):
                 wd = log(self.wd.get((s, w))[1])-log(self.uni.get(s)[1])
                 for pre in now:
                     p = pre[1]+wd+self.trans[(pre[0][0], pre[0][1], s)]
-                    if (pre[0][1], s) not in stage or p > stage[(pre[0][1], s)][0]:
+                    if (pre[0][1], s) not in stage or p > stage[(pre[0][1],
+                                                                 s)][0]:
                         stage[(pre[0][1], s)] = (p, pre[2]+[s])
             stage = map(lambda x: (x[0], x[1][0], x[1][1]), stage.items())
-            now = heapq.nlargest(self.N, stage, key=lambda x:x[1])
+            now = heapq.nlargest(self.N, stage, key=lambda x: x[1])
         now = heapq.nlargest(1, stage, key=lambda x: x[1]+self.geteos(x[0][1]))
         return zip(data, now[0][2])

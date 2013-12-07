@@ -7,8 +7,9 @@ import codecs
 from ..utils.tnt import TnT
 
 data_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                         '199801.txt')
+                         'tag.marshal')
 tagger = TnT()
+tagger.load(data_path)
 
 
 def train(file_name):
@@ -22,8 +23,6 @@ def train(file_name):
         data.append(tmp)
     fr.close()
     tagger.train(data)
-
-train(data_path)
 
 
 def tag_all(words):

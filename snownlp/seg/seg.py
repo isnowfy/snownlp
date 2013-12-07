@@ -12,6 +12,12 @@ class Seg(object):
     def __init__(self):
         self.segger = TnT()
 
+    def save(self, fname):
+        self.segger.save(fname)
+
+    def load(self, fname):
+        self.segger.load(fname)
+
     def train(self, file_name):
         fr = codecs.open(file_name, 'r', 'utf-8')
         data = []

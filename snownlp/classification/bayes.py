@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-import json
+import marshal
 from math import log, exp
 
 from ..utils.frequency import AddOneProb
@@ -19,10 +19,10 @@ class Bayes(object):
         d['d'] = {}
         for k, v in self.d.iteritems():
             d['d'][k] = v.__dict__
-        json.dump(d, open(fname, 'w'))
+        marshal.dump(d, open(fname, 'w'))
 
     def load(self, fname):
-        d = json.load(open(fname, 'r'))
+        d = marshal.load(open(fname, 'r'))
         self.total = d['total']
         self.d = {}
         for k, v in d['d'].iteritems():

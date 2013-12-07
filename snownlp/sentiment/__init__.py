@@ -8,7 +8,7 @@ from .. import seg
 from ..classification.bayes import Bayes
 
 data_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                         'sentiment.json')
+                         'sentiment.marshal')
 
 
 class Sentiment(object):

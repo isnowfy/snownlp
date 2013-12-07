@@ -7,9 +7,9 @@ import re
 import seg as TnTseg
 
 data_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                         'data.txt')
+                         'seg.marshal')
 segger = TnTseg.Seg()
-segger.train(data_path)
+segger.load(data_path)
 
 
 def seg(sent):
