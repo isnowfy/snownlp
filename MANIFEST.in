@@ -1,0 +1,2 @@
+include *.md
+recursive-include snownlp *.txt *.marshal

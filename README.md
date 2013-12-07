@@ -62,6 +62,12 @@ s.idf
 * tf，idf
 * Tokenization（分割成句子）
 
+## Get It now
+
+~~~~
+$ pip install snownlp
+~~~~
+
 ## License
 
 MIT licensed.
