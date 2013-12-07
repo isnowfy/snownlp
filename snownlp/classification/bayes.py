@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import json
 from math import log, exp
 
 from ..utils.frequency import AddOneProb
@@ -12,13 +13,29 @@ class Bayes(object):
         self.d = {}
         self.total = 0
 
+    def save(self, fname):
+        d = {}
+        d['total'] = self.total
+        d['d'] = {}
+        for k, v in self.d.iteritems():
+            d['d'][k] = v.__dict__
+        json.dump(d, open(fname, 'w'))
+
+    def load(self, fname):
+        d = json.load(open(fname, 'r'))
+        self.total = d['total']
+        self.d = {}
+        for k, v in d['d'].iteritems():
+            self.d[k] = AddOneProb()
+            self.d[k].__dict__ = v
+
     def train(self, data):
         for d in data:
             c = d[1]
             if c not in self.d:
                 self.d[c] = AddOneProb()
-                for word in d[0]:
-                    self.d[c].add(word, 1)
+            for word in d[0]:
+                self.d[c].add(word, 1)
         self.total = sum(map(lambda x: self.d[x].getsum(), self.d.keys()))
 
     def classify(self, x):
