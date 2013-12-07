@@ -51,14 +51,14 @@ s.idf
 
 ## Features
 
-* 中文分词
-* 词性标准
+* 中文分词（[TnT](http://aclweb.org/anthology//A/A00/A00-1031.pdf) 3-gram 隐马）
+* 词性标准（[TnT](http://aclweb.org/anthology//A/A00/A00-1031.pdf) 3-gram 隐马）
 * 情感分析
 * 文本分类（Naive Bayes）
 * 转换成拼音
 * 繁体转简体
-* 提取文本关键词
-* 提取文本摘要
+* 提取文本关键词（Textrank算法）
+* 提取文本摘要（Textrank算法）
 * tf，idf
 * Tokenization（分割成句子）
 
