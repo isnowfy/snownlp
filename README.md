@@ -21,7 +21,7 @@ s.pinyin        # [u'zhe', u'ge', u'dong', u'xi',
 
 s = SnowNLP(u'「繁體字」「繁體中文」的叫法在臺灣亦很常見。')
 
-s.han           # u'繁体字」「繁体中文」的叫法
+s.han           # u'「繁体字」「繁体中文」的叫法
                 # 在台湾亦很常见。'
 
 text = u'''
