@@ -45,8 +45,13 @@ s.summary(3)	# [u'自然语言处理是一门融语言学、计算机科学、
 				#  u'自然语言处理是计算机科学领域与人工智能
 				#	 领域中的一个重要方向']
 s.sentences
+
+s = SnowNLP([[u'这篇', u'文章'],
+             [u'那篇', u'论文'],
+             [u'这个']])
 s.tf
 s.idf
+s.sim([u'文章'])# [0.3756070762985226, 0, 0]
 ~~~~
 
 ## Features
@@ -61,6 +66,7 @@ s.idf
 * 提取文本摘要（Textrank算法）
 * tf，idf
 * Tokenization（分割成句子）
+* 文本相似（BM25）
 
 ## Get It now
 

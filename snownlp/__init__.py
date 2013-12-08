@@ -53,6 +53,9 @@ class SnowNLP(object):
     def idf(self):
         return self.bm25.idf
 
+    def sim(self, doc):
+        return self.bm25.simall(doc)
+
     def summary(self, limit=5):
         doc = []
         sents = self.sentences
