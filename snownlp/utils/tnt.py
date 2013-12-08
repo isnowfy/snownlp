@@ -37,10 +37,10 @@ class TnT(object):
                 d[k] = v.__dict__
             else:
                 d[k] = v
-        marshal.dump(d, open(fname, 'w'))
+        marshal.dump(d, open(fname, 'wb'))
 
     def load(self, fname):
-        d = marshal.load(open(fname, 'r'))
+        d = marshal.load(open(fname, 'rb'))
         for k, v in d.iteritems():
             if isinstance(self.__dict__[k], set):
                 self.__dict__[k] = set(v)

@@ -19,10 +19,10 @@ class Bayes(object):
         d['d'] = {}
         for k, v in self.d.iteritems():
             d['d'][k] = v.__dict__
-        marshal.dump(d, open(fname, 'w'))
+        marshal.dump(d, open(fname, 'wb'))
 
     def load(self, fname):
-        d = marshal.load(open(fname, 'r'))
+        d = marshal.load(open(fname, 'rb'))
         self.total = d['total']
         self.d = {}
         for k, v in d['d'].iteritems():
