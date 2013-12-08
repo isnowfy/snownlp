@@ -21,6 +21,7 @@ fr = codecs.open(pinyin_path, 'r', 'utf-8')
 for word in fr:
     words = word.split()
     pinyin[words[0]] = words[1:]
+fr.close()
 
 
 def filter_stop(words):
