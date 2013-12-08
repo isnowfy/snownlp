@@ -62,11 +62,11 @@ s.sim([u'文章'])# [0.3756070762985226, 0, 0]
 * 文本分类（Naive Bayes）
 * 转换成拼音
 * 繁体转简体
-* 提取文本关键词（Textrank算法）
-* 提取文本摘要（Textrank算法）
+* 提取文本关键词（[TextRank](http://acl.ldc.upenn.edu/acl2004/emnlp/pdf/Mihalcea.pdf)算法）
+* 提取文本摘要（[TextRank](http://acl.ldc.upenn.edu/acl2004/emnlp/pdf/Mihalcea.pdf)算法）
 * tf，idf
 * Tokenization（分割成句子）
-* 文本相似（BM25）
+* 文本相似（[BM25](http://en.wikipedia.org/wiki/Okapi_BM25)）
 
 ## Get It now
 
