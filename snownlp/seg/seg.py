@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+from __future__ import print_function
 from __future__ import unicode_literals
 
 import codecs
@@ -46,4 +46,4 @@ class Seg(object):
 if __name__ == '__main__':
     seg = Seg()
     seg.train('data.txt')
-    print ' '.join(seg.seg('主要是用来放置一些简单快速的中文分词和词性标注的程序'))
+    print(' '.join(seg.seg('主要是用来放置一些简单快速的中文分词和词性标注的程序')))

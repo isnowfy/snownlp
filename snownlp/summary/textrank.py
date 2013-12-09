@@ -43,10 +43,10 @@ class TextRank(object):
         self.top = sorted(self.top, key=lambda x: x[1], reverse=True)
 
     def top_index(self, limit):
-        return map(lambda x: x[0], self.top)[:limit]
+        return list(map(lambda x: x[0], self.top))[:limit]
 
     def top(self, limit):
-        return map(lambda x: self.docs[x[0]], self.top)
+        return list(map(lambda x: self.docs[x[0]], self.top))
 
 
 class KeywordTextRank(object):
@@ -79,7 +79,7 @@ class KeywordTextRank(object):
         for _ in range(self.max_iter):
             m = {}
             max_diff = 0
-            for k, v in self.words.iteritems():
+            for k, v in self.words.items():
                 m[k] = 1-self.d
                 for j in v:
                     if k == j or len(self.words[j]) == 0:
@@ -90,11 +90,11 @@ class KeywordTextRank(object):
             self.vertex = m
             if max_diff <= self.min_diff:
                 break
-        self.top = list(self.vertex.iteritems())
+        self.top = list(self.vertex.items())
         self.top = sorted(self.top, key=lambda x: x[1], reverse=True)
 
     def top_index(self, limit):
-        return map(lambda x: x[0], self.top)[:limit]
+        return list(map(lambda x: x[0], self.top))[:limit]
 
     def top(self, limit):
-        return map(lambda x: self.docs[x[0]], self.top)
+        return list(map(lambda x: self.docs[x[0]], self.top))

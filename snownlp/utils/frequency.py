@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-import good_turing
+from . import good_turing
 
 class BaseProb(object):
-    
+
     def __init__(self):
         self.d = {}
         self.total = 0.0

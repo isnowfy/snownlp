@@ -5,7 +5,7 @@ import os
 import re
 import codecs
 
-import zh
+from . import zh
 
 stop_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                          'stopwords.txt')
@@ -25,7 +25,7 @@ fr.close()
 
 
 def filter_stop(words):
-    return filter(lambda x: x not in stop, words)
+    return list(filter(lambda x: x not in stop, words))
 
 
 def zh2hans(sent):

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from __future__ import print_function
 from __future__ import unicode_literals
 
 text = '''
@@ -54,8 +55,8 @@ if __name__ == '__main__':
     rank = textrank.TextRank(doc)
     rank.solve()
     for index in rank.top_index(5):
-        print sents[index]
+        print(sents[index])
     keyword_rank = textrank.KeywordTextRank(doc)
     keyword_rank.solve()
     for w in keyword_rank.top_index(5):
-        print w
+        print(w)

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+from __future__ import print_function
 from __future__ import division
 from math import log, exp
 
@@ -48,4 +48,4 @@ def main(dic):
     return nr[0]/total/total, dict(zip(dic.keys(), map(lambda x:prob[rr[x]], dic.values())))
 
 if __name__ == '__main__':
-    print main({1:1,2:1,3:1,4:2,5:2,6:3,7:1,8:2,9:3})
+    print(main({1:1,2:1,3:1,4:2,5:2,6:3,7:1,8:2,9:3}))
