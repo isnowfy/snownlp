@@ -3,12 +3,14 @@
 '''
 Implementation of 'TnT - A Statisical Part of Speech Tagger'
 '''
+from __future__ import unicode_literals
 
+import sys
 import heapq
 import marshal
 from math import log
 
-import frequency
+from . import frequency
 
 
 class TnT(object):
@@ -37,11 +39,15 @@ class TnT(object):
                 d[k] = v.__dict__
             else:
                 d[k] = v
+        if sys.version_info.major == 3:
+            fname = fname + '.3'
         marshal.dump(d, open(fname, 'wb'))
 
     def load(self, fname):
+        if sys.version_info.major == 3:
+            fname = fname + '.3'
         d = marshal.load(open(fname, 'rb'))
-        for k, v in d.iteritems():
+        for k, v in d.items():
             if isinstance(self.__dict__[k], set):
                 self.__dict__[k] = set(v)
             elif hasattr(self.__dict__[k], '__dict__'):
@@ -121,7 +127,7 @@ class TnT(object):
                     if (pre[0][1], s) not in stage or p > stage[(pre[0][1],
                                                                  s)][0]:
                         stage[(pre[0][1], s)] = (p, pre[2]+[s])
-            stage = map(lambda x: (x[0], x[1][0], x[1][1]), stage.items())
+            stage = list(map(lambda x: (x[0], x[1][0], x[1][1]), stage.items()))
             now = heapq.nlargest(self.N, stage, key=lambda x: x[1])
         now = heapq.nlargest(1, stage, key=lambda x: x[1]+self.geteos(x[0][1]))
         return zip(data, now[0][2])

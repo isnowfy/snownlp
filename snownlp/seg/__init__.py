@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 import os
 import re
 
-import seg as TnTseg
+from . import seg as TnTseg
 
 data_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                          'seg.marshal')

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from __future__ import print_function
 from __future__ import unicode_literals
 
 zh2hans = {
@@ -3242,4 +3243,4 @@ def transfer(sentence):
 
 
 if __name__ == '__main__':
-    print transfer('飛機飛向藍天')
+    print(transfer('飛機飛向藍天'))
