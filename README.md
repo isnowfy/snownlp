@@ -67,6 +67,7 @@ s.sim([u'文章'])# [0.3756070762985226, 0, 0]
 * tf，idf
 * Tokenization（分割成句子）
 * 文本相似（[BM25](http://en.wikipedia.org/wiki/Okapi_BM25)）
+* 支持python3（感谢[erning](https://github.com/erning)）
 
 ## Get It now
 

@@ -1,3 +1,4 @@
+import os
 import sys
 import subprocess
 
@@ -10,11 +11,11 @@ except ImportError:
     def _find_packages(where='.', exclude=()):
         """Return a list all Python packages found within directory 'where'
 
-        'where' should be supplied as a "cross-platform" (i.e. URL-style) path; it
-        will be converted to the appropriate local path syntax.  'exclude' is a
-        sequence of package names to exclude; '*' can be used as a wildcard in the
-        names, such that 'foo.*' will exclude all subpackages of 'foo' (but not
-        'foo' itself).
+        'where' should be supplied as a "cross-platform" (i.e. URL-style)
+        path; it will be converted to the appropriate local path syntax.
+        'exclude' is a sequence of package names to exclude; '*' can be used
+        as a wildcard in the names, such that 'foo.*' will exclude all
+        subpackages of 'foo' (but not 'foo' itself).
         """
         out = []
         stack = [(convert_path(where), '')]
@@ -36,6 +37,7 @@ if 'publish' in sys.argv:
     status = subprocess.call(PUBLISH_CMD, shell=True)
     sys.exit(status)
 
+
 def read(fname):
     with open(fname) as fp:
         content = fp.read()
@@ -43,7 +45,7 @@ def read(fname):
 
 setup(
     name='snownlp',
-    version='0.9',
+    version='0.9.3',
     description='Python library for processing Chinese text',
     author='isnowfy',
     url='https://github.com/isnowfy/snownlp',
@@ -55,6 +57,6 @@ setup(
         'Programming Language :: Python',
 
     ],
-    package_data={'': ['*.md', '*.txt', '*.marshal']},
+    package_data={'': ['*.md', '*.txt', '*.marshal', '*.marshal.3']},
     include_package_data=True,
 )

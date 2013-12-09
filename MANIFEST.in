@@ -1,2 +1,2 @@
 include *.md
-recursive-include snownlp *.txt *.marshal
+recursive-include snownlp *.txt *.marshal *.marshal.3
