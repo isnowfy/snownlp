@@ -5,12 +5,16 @@ from __future__ import unicode_literals
 import codecs
 
 from ..utils.tnt import TnT
+from .y09_2047 import CharacterBasedGenerativeModel
 
 
 class Seg(object):
 
-    def __init__(self):
-        self.segger = TnT()
+    def __init__(self, name='tnt'):
+        if name == 'tnt':
+            self.segger = TnT()
+        else:
+            self.segger = CharacterBasedGenerativeModel()
 
     def save(self, fname):
         self.segger.save(fname)
@@ -34,13 +38,17 @@ class Seg(object):
         ret = self.segger.tag(sentence)
         tmp = ''
         for i in ret:
-            if i[1] == 's':
-                yield i[0]
-            elif i[1] == 'e':
+            if i[1] == 'e':
                 yield tmp+i[0]
                 tmp = ''
+            elif i[1] == 'b' or i[1] == 's':
+                if tmp:
+                    yield tmp
+                tmp = i[0]
             else:
                 tmp += i[0]
+        if tmp:
+            yield tmp
 
 
 if __name__ == '__main__':

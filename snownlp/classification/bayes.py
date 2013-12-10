@@ -18,7 +18,7 @@ class Bayes(object):
         d = {}
         d['total'] = self.total
         d['d'] = {}
-        for k, v in self.d.iteritems():
+        for k, v in self.d.items():
             d['d'][k] = v.__dict__
         if sys.version_info.major == 3:
             fname = fname + '.3'

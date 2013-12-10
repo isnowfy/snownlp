@@ -32,7 +32,7 @@ class TnT(object):
 
     def save(self, fname):
         d = {}
-        for k, v in self.__dict__.iteritems():
+        for k, v in self.__dict__.items():
             if isinstance(v, set):
                 d[k] = list(v)
             elif hasattr(v, '__dict__'):

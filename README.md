@@ -14,7 +14,7 @@ s.tags          # [(u'这个', u'r'), (u'东西', u'n'),
                 #  (u'真心', u'd'), (u'很', u'd'),
                 #  (u'赞', u'Vg')]
 
-s.sentiments    # 0.9911384166031976 positive的概率
+s.sentiments    # 0.9830157237610916 positive的概率
 
 s.pinyin        # [u'zhe', u'ge', u'dong', u'xi',
                 #  u'zhen', u'xin', u'hen', u'zan']
@@ -41,9 +41,10 @@ s.keywords(3)	# [u'语言', u'自然', u'计算机']
 
 s.summary(3)	# [u'自然语言处理是一门融语言学、计算机科学、
 				#	 数学于一体的科学',
-				#  u'即人们日常使用的语言',
 				#  u'自然语言处理是计算机科学领域与人工智能
-				#	 领域中的一个重要方向']
+				#	 领域中的一个重要方向',
+                #  u'而在于研制能有效地实现自然语言通信的计
+                #    算机系统']
 s.sentences
 
 s = SnowNLP([[u'这篇', u'文章'],
@@ -56,7 +57,7 @@ s.sim([u'文章'])# [0.3756070762985226, 0, 0]
 
 ## Features
 
-* 中文分词（[TnT](http://aclweb.org/anthology//A/A00/A00-1031.pdf) 3-gram 隐马）
+* 中文分词（[Character-Based Generative Model](http://aclweb.org/anthology//Y/Y09/Y09-2047.pdf)）
 * 词性标准（[TnT](http://aclweb.org/anthology//A/A00/A00-1031.pdf) 3-gram 隐马）
 * 情感分析
 * 文本分类（Naive Bayes）
