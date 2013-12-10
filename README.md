@@ -57,7 +57,7 @@ s.sim([u'文章'])# [0.3756070762985226, 0, 0]
 
 ## Features
 
-* 中文分词（[Character-Based Generative Model](http://aclweb.org/anthology//Y/Y09/Y09-2047.pdf)）
+* 中文分词（[Character-Based Generative Model](http://aclweb.org/anthology//Y/Y09/Y09-2047.pdf)）(TODO: 新算法导致字典过大，现在暂时去掉了字典但是第一次import时间稍微长一点)
 * 词性标准（[TnT](http://aclweb.org/anthology//A/A00/A00-1031.pdf) 3-gram 隐马）
 * 情感分析
 * 文本分类（Naive Bayes）
