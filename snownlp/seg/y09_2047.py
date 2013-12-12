@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 import sys
+import gzip
 import marshal
 from math import log
 
@@ -19,7 +20,7 @@ class CharacterBasedGenerativeModel(object):
         self.bi = frequency.NormalProb()
         self.tri = frequency.NormalProb()
 
-    def save(self, fname):
+    def save(self, fname, iszip=False):
         d = {}
         for k, v in self.__dict__.items():
             if hasattr(v, '__dict__'):
@@ -28,12 +29,22 @@ class CharacterBasedGenerativeModel(object):
                 d[k] = v
         if sys.version_info.major == 3:
             fname = fname + '.3'
-        marshal.dump(d, open(fname, 'wb'))
+        if not iszip:
+            marshal.dump(d, open(fname, 'wb'))
+        else:
+            f = gzip.open(fname, 'wb')
+            f.write(marshal.dumps(d))
+            f.close()
 
-    def load(self, fname):
+    def load(self, fname, iszip=False):
         if sys.version_info.major == 3:
             fname = fname + '.3'
-        d = marshal.load(open(fname, 'rb'))
+        if not iszip:
+            d = marshal.load(open(fname, 'rb'))
+        else:
+            f = gzip.open(fname, 'rb')
+            d = marshal.loads(f.read())
+            f.close()
         for k, v in d.items():
             if hasattr(self.__dict__[k], '__dict__'):
                 self.__dict__[k].__dict__ = v

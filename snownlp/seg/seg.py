@@ -16,11 +16,11 @@ class Seg(object):
         else:
             self.segger = CharacterBasedGenerativeModel()
 
-    def save(self, fname):
-        self.segger.save(fname)
+    def save(self, fname, iszip=False):
+        self.segger.save(fname, iszip)
 
-    def load(self, fname):
-        self.segger.load(fname)
+    def load(self, fname, iszip=False):
+        self.segger.load(fname, iszip)
 
     def train(self, file_name):
         fr = codecs.open(file_name, 'r', 'utf-8')
