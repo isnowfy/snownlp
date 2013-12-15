@@ -20,12 +20,12 @@ class Bayes(object):
         d['d'] = {}
         for k, v in self.d.items():
             d['d'][k] = v.__dict__
-        if sys.version_info.major == 3:
+        if sys.version_info[0] == 3:
             fname = fname + '.3'
         marshal.dump(d, open(fname, 'wb'))
 
     def load(self, fname):
-        if sys.version_info.major == 3:
+        if sys.version_info[0] == 3:
             fname = fname + '.3'
         d = marshal.load(open(fname, 'rb'))
         self.total = d['total']

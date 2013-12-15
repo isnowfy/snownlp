@@ -39,12 +39,12 @@ class TnT(object):
                 d[k] = v.__dict__
             else:
                 d[k] = v
-        if sys.version_info.major == 3:
+        if sys.version_info[0] == 3:
             fname = fname + '.3'
         marshal.dump(d, open(fname, 'wb'))
 
     def load(self, fname):
-        if sys.version_info.major == 3:
+        if sys.version_info[0] == 3:
             fname = fname + '.3'
         d = marshal.load(open(fname, 'rb'))
         for k, v in d.items():

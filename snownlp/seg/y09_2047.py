@@ -27,7 +27,7 @@ class CharacterBasedGenerativeModel(object):
                 d[k] = v.__dict__
             else:
                 d[k] = v
-        if sys.version_info.major == 3:
+        if sys.version_info[0] == 3:
             fname = fname + '.3'
         if not iszip:
             marshal.dump(d, open(fname, 'wb'))
@@ -37,7 +37,7 @@ class CharacterBasedGenerativeModel(object):
             f.close()
 
     def load(self, fname, iszip=False):
-        if sys.version_info.major == 3:
+        if sys.version_info[0] == 3:
             fname = fname + '.3'
         if not iszip:
             d = marshal.load(open(fname, 'rb'))
