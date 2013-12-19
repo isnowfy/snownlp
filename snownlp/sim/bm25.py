@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 import math
-
+from collections import defaultdict
 
 class BM25(object):
 
@@ -11,7 +11,7 @@ class BM25(object):
         self.avgdl = sum(map(lambda x: len(x)+0.0, docs)) / self.D
         self.docs = docs
         self.f = []
-        self.df = {}
+        self.df = defaultdict(int)
         self.idf = {}
         self.k1 = 1.5
         self.b = 0.75
@@ -19,17 +19,13 @@ class BM25(object):
 
     def init(self):
         for doc in self.docs:
-            tmp = {}
+            tmp = defaultdict(int)
             for word in doc:
-                if not word in tmp:
-                    tmp[word] = 0
                 tmp[word] += 1
             self.f.append(tmp)
-            for k, v in tmp.items():
-                if k not in self.df:
-                    self.df[k] = 0
+            for k, v in tmp.iteritems():
                 self.df[k] += 1
-        for k, v in self.df.items():
+        for k, v in self.df.iteritems():
             self.idf[k] = math.log(self.D-v+0.5)-math.log(v+0.5)
 
     def sim(self, doc, index):
