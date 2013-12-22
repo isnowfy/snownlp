@@ -9,7 +9,7 @@ class BM25(object):
     def __init__(self, docs):
         self.D = len(docs)
         self.avgdl = sum(map(lambda x: len(x)+0.0, docs)) / self.D
-        self.docs = docs
+        self.docs = list(docs)
         self.f = []
         self.df = defaultdict(int)
         self.idf = {}
@@ -23,9 +23,9 @@ class BM25(object):
             for word in doc:
                 tmp[word] += 1
             self.f.append(tmp)
-            for k, v in tmp.iteritems():
+            for k, v in tmp.items():
                 self.df[k] += 1
-        for k, v in self.df.iteritems():
+        for k, v in self.df.items():
             self.idf[k] = math.log(self.D-v+0.5)-math.log(v+0.5)
 
     def sim(self, doc, index):
@@ -34,7 +34,7 @@ class BM25(object):
             if word not in self.f[index]:
                 continue
             score += (self.idf[word]*self.f[index][word]*(self.k1+1)
-                      / (self.f[index][word]+self.k1*(1-self.b+self.b*self.D
+                      / (self.f[index][word]+self.k1*(1-self.b+self.b*len(self.docs[index])
                                                       / self.avgdl)))
         return score
 
