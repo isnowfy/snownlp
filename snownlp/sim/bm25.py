@@ -2,16 +2,16 @@
 from __future__ import unicode_literals
 
 import math
-
+from collections import defaultdict
 
 class BM25(object):
 
     def __init__(self, docs):
         self.D = len(docs)
         self.avgdl = sum(map(lambda x: len(x)+0.0, docs)) / self.D
-        self.docs = docs
+        self.docs = list(docs)
         self.f = []
-        self.df = {}
+        self.df = defaultdict(int)
         self.idf = {}
         self.k1 = 1.5
         self.b = 0.75
@@ -19,15 +19,11 @@ class BM25(object):
 
     def init(self):
         for doc in self.docs:
-            tmp = {}
+            tmp = defaultdict(int)
             for word in doc:
-                if not word in tmp:
-                    tmp[word] = 0
                 tmp[word] += 1
             self.f.append(tmp)
             for k, v in tmp.items():
-                if k not in self.df:
-                    self.df[k] = 0
                 self.df[k] += 1
         for k, v in self.df.items():
             self.idf[k] = math.log(self.D-v+0.5)-math.log(v+0.5)
@@ -38,7 +34,7 @@ class BM25(object):
             if word not in self.f[index]:
                 continue
             score += (self.idf[word]*self.f[index][word]*(self.k1+1)
-                      / (self.f[index][word]+self.k1*(1-self.b+self.b*self.D
+                      / (self.f[index][word]+self.k1*(1-self.b+self.b*len(self.docs[index])
                                                       / self.avgdl)))
         return score
 
