@@ -8,7 +8,7 @@ class BM25(object):
 
     def __init__(self, docs):
         self.D = len(docs)
-        self.avgdl = sum(map(lambda x: len(x)+0.0, docs)) / self.D
+        self.avgdl = sum([len(doc)+0.0 for doc in docs]) / self.D
         self.docs = docs
         self.f = []
         self.df = {}
