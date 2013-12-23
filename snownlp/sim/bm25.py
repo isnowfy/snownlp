@@ -37,8 +37,9 @@ class BM25(object):
         for word in doc:
             if word not in self.f[index]:
                 continue
+            d = len(self.docs[index])
             score += (self.idf[word]*self.f[index][word]*(self.k1+1)
-                      / (self.f[index][word]+self.k1*(1-self.b+self.b*self.D
+                      / (self.f[index][word]+self.k1*(1-self.b+self.b*d
                                                       / self.avgdl)))
         return score
 
