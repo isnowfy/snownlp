@@ -7,6 +7,7 @@ from . import tag
 from . import sentiment
 from .sim import bm25
 from .summary import textrank
+from .summary import words_merge
 
 
 class SnowNLP(object):
@@ -70,7 +71,7 @@ class SnowNLP(object):
             ret.append(sents[index])
         return ret
 
-    def keywords(self, limit=5):
+    def keywords(self, limit=5, merge=False):
         doc = []
         sents = self.sentences
         for sent in sents:
@@ -82,4 +83,7 @@ class SnowNLP(object):
         ret = []
         for w in rank.top_index(limit):
             ret.append(w)
+        if merge:
+            wm = words_merge.SimpleMerge(self.doc, ret)
+            return wm.merge()
         return ret
