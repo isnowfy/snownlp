@@ -83,6 +83,7 @@ $ pip install snownlp
 分词在`snownlp/seg`目录下
 ~~~~{python}
 from snownlp.seg.seg import Seg
+seg = Seg()
 seg.train('data.txt')
 seg.save('data.marshal')
 ~~~~
