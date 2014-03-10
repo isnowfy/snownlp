@@ -76,6 +76,18 @@ s.sim([u'文章'])# [0.3756070762985226, 0, 0]
 $ pip install snownlp
 ~~~~
 
+## 关于训练
+
+现在提供训练的包括分词，词性标注，情感分析，而且都提供了我用来训练的原始文件
+以分词为例
+分词在`snownlp/seg`目录下
+~~~~{python}
+from snownlp.seg.seg import Seg
+seg.train('data.txt')
+seg.save('data.marshal')
+~~~~
+这样训练好的文件就存储为`data.marshal`了，之后修改`snownlp/seg/__init__.py`里的`data_path`指向刚训练好的文件即可
+
 ## License
 
 MIT licensed.
