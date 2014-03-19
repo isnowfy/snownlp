@@ -19,10 +19,10 @@ class TextRank(object):
         self.top = []
 
     def solve(self):
-        for doc in self.docs:
+        for cnt, doc in enumerate(self.docs):
             scores = self.bm25.simall(doc)
             self.weight.append(scores)
-            self.weight_sum.append(sum(scores))
+            self.weight_sum.append(sum(scores)-scores[cnt])
             self.vertex.append(1.0)
         for _ in range(self.max_iter):
             m = []
@@ -32,7 +32,7 @@ class TextRank(object):
                 for j in range(self.D):
                     if j == i or self.weight_sum[j] == 0:
                         continue
-                    m[-1] += (self.d*self.weight[i][j]
+                    m[-1] += (self.d*self.weight[j][i]
                               / self.weight_sum[j]*self.vertex[j])
                 if abs(m[-1] - self.vertex[i]) > max_diff:
                     max_diff = abs(m[-1] - self.vertex[i])
