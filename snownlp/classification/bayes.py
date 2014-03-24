@@ -46,10 +46,9 @@ class Bayes(object):
     def classify(self, x):
         tmp = {}
         for k in self.d:
-            tmp[k] = 0
+            tmp[k] = log(self.d[k].getsum()) - log(self.total)
             for word in x:
-                tmp[k] += log(self.d[k].getsum()) - log(self.total)\
-                    + log(self.d[k].freq(word))
+                tmp[k] += log(self.d[k].freq(word))
         ret, prob = 0, 0
         for k in self.d:
             now = 0
