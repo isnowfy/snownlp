@@ -10,16 +10,16 @@ from .y09_2047 import CharacterBasedGenerativeModel
 
 class Seg(object):
 
-    def __init__(self, name='tnt'):
+    def __init__(self, name='other'):
         if name == 'tnt':
             self.segger = TnT()
         else:
             self.segger = CharacterBasedGenerativeModel()
 
-    def save(self, fname, iszip=False):
+    def save(self, fname, iszip=True):
         self.segger.save(fname, iszip)
 
-    def load(self, fname, iszip=False):
+    def load(self, fname, iszip=True):
         self.segger.load(fname, iszip)
 
     def train(self, file_name):

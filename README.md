@@ -84,9 +84,9 @@ $ pip install snownlp
 from snownlp.seg.seg import Seg
 seg = Seg()
 seg.train('data.txt')
-seg.save('data.marshal')
+seg.save('seg.marshal')
 ~~~~
-这样训练好的文件就存储为`data.marshal`了，之后修改`snownlp/seg/__init__.py`里的`data_path`指向刚训练好的文件即可
+这样训练好的文件就存储为`seg.marshal`了，之后修改`snownlp/seg/__init__.py`里的`data_path`指向刚训练好的文件即可
 
 ## License
 

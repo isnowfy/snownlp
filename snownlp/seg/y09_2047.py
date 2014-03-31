@@ -20,7 +20,7 @@ class CharacterBasedGenerativeModel(object):
         self.bi = frequency.NormalProb()
         self.tri = frequency.NormalProb()
 
-    def save(self, fname, iszip=False):
+    def save(self, fname, iszip=True):
         d = {}
         for k, v in self.__dict__.items():
             if hasattr(v, '__dict__'):
@@ -36,14 +36,18 @@ class CharacterBasedGenerativeModel(object):
             f.write(marshal.dumps(d))
             f.close()
 
-    def load(self, fname, iszip=False):
+    def load(self, fname, iszip=True):
         if sys.version_info[0] == 3:
             fname = fname + '.3'
         if not iszip:
             d = marshal.load(open(fname, 'rb'))
         else:
-            f = gzip.open(fname, 'rb')
-            d = marshal.loads(f.read())
+            try:
+                f = gzip.open(fname, 'rb')
+                d = marshal.loads(f.read())
+            except IOError:
+                f = open(fname, 'rb')
+                d = marshal.loads(f.read())
             f.close()
         for k, v in d.items():
             if hasattr(self.__dict__[k], '__dict__'):
@@ -57,8 +61,8 @@ class CharacterBasedGenerativeModel(object):
         return float(v1)/v2
 
     def train(self, data):
-        now = [('', 'BOS'), ('', 'BOS')]
         for sentence in data:
+            now = [('', 'BOS'), ('', 'BOS')]
             self.bi.add((('', 'BOS'), ('', 'BOS')), 1)
             self.uni.add(('', 'BOS'), 2)
             for word, tag in sentence:
