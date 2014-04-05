@@ -60,8 +60,8 @@ s.sim([u'文章'])# [0.3756070762985226, 0, 0]
 * 词性标注（[TnT](http://aclweb.org/anthology//A/A00/A00-1031.pdf) 3-gram 隐马）
 * 情感分析（现在训练数据主要是买卖东西时的评价，所以对其他的一些可能效果不是很好，待解决）
 * 文本分类（Naive Bayes）
-* 转换成拼音
-* 繁体转简体
+* 转换成拼音（Trie树实现的最大匹配）
+* 繁体转简体（Trie树实现的最大匹配）
 * 提取文本关键词（[TextRank](http://acl.ldc.upenn.edu/acl2004/emnlp/pdf/Mihalcea.pdf)算法）
 * 提取文本摘要（[TextRank](http://acl.ldc.upenn.edu/acl2004/emnlp/pdf/Mihalcea.pdf)算法）
 * tf，idf

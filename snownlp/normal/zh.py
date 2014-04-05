@@ -2,6 +2,8 @@
 from __future__ import print_function
 from __future__ import unicode_literals
 
+from ..utils.trie import Trie
+
 zh2hans = {
     '顯著': '显著',
     '土著': '土著',
@@ -3221,25 +3223,14 @@ zh2hans = {
     "希拉": "赫拉",
 }
 
-maxl = max(map(lambda x: len(x), zh2hans.keys()))
+handle = Trie()
+for k, v in zh2hans.items():
+    handle.insert(k, v)
 
 
 def transfer(sentence):
-    ret = ""
-    pos = 0
-    while pos < len(sentence):
-        find = False
-        for i in range(maxl, 0, -1):
-            word = sentence[pos: pos+i]
-            if word in zh2hans:
-                ret += zh2hans[word]
-                pos += i
-                find = True
-                break
-        if not find:
-            ret += sentence[pos]
-            pos += 1
-    return ret
+    ret = handle.translate(sentence)
+    return ''.join(ret)
 
 
 if __name__ == '__main__':

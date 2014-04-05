@@ -30,11 +30,7 @@ class SnowNLP(object):
 
     @property
     def pinyin(self):
-        words = self.words
-        ret = []
-        for word in words:
-            ret += normal.get_pinyin(word)
-        return ret
+        return normal.get_pinyin(self.doc)
 
     @property
     def sentiments(self):

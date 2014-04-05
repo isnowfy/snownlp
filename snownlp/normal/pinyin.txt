@@ -56029,7 +56029,7 @@
 无所不用其极 wu suo bu yong qi ji
 五十步笑百步 wu shi bu xiao bai bu
 迅雷不及掩耳 xun lei bu ji yan er
-一二·九运动 yi er jiu yun dong
+一二九运动 yi er jiu yun dong
 一竿子插到底 yi gan zi cha dao di
 有眼不识泰山 you yan bu shi tai shan
 政治协商会议 zheng zhi xie shang hui yi
@@ -56045,20 +56045,37 @@
 针尖儿对麦芒儿 zhen jian er dui mai mang er
 中国人民解放军 zhong guo ren min jie fang jun
 醉翁之意不在酒 zui weng zhi yi bu zai jiu
-饱食终日，无所用心 bao shi zhong ri wu suo yong xin
-兼听则明，偏信则暗 jian ting ze ming pian xin ze an
-近朱者赤，近墨者黑 jin zhu zhe chi jin mo zhe hei
-靠山吃山，靠水吃水 kao shan chi shan kao shui chi shui
-宁为玉碎,不为瓦全 ning wei yu sui ,bu wei wa quan
-取之不尽，用之不竭 qu zhi bu jin yong zhi bu jie
-取之于民，用之于民 qu zhi yu min yong zhi yu min
-十年树木，百年树人 shi nian shu mu bai nian shu ren
-万事俱备，只欠东风 wan shi ju bei zhi qian dong feng
-无源之水，无本之木 wu yuan zhi shui wu ben zhi mu
-眼观六路，耳听八方 yan guan liu lu er ting ba fang
-以眼还眼，以牙还牙 yi yan huan yan yi ya huan ya
-欲加之罪，何患无辞 yu jia zhi zui he huan wu ci
-鹬蚌相争，渔翁得利 yu bang xiang zheng yu weng de li
-知无不言，言无不尽 zhi wu bu yan yan wu bu jin
-种瓜得瓜，种豆得豆 zhong gua de gua zhong dou de dou
-司马昭之心，路人皆知 si ma zhao zhi xin lu ren jie zhi
+饱食终日 bao shi zhong ri
+无所用心 wu suo yong xin
+兼听则明 jian ting ze ming
+偏信则暗 pian xin ze an
+近朱者赤 jin zhu zhe chi
+近墨者黑 jin mo zhe hei
+靠山吃山 kao shan chi shan
+靠水吃水 kao shui chi shui
+宁为玉碎 ning wei yu sui
+不为瓦全 bu wei wa quan
+取之不尽 qu zhi bu jin
+用之不竭 yong zhi bu jie
+取之于民 qu zhi yu min
+用之于民 yong zhi yu min
+十年树木 shi nian shu mu
+百年树人 bai nian shu ren
+万事俱备 wan shi ju bei
+只欠东风 zhi qian dong feng
+无源之水 wu yuan zhi shui
+无本之木 wu ben zhi mu
+眼观六路 yan guan liu lu
+耳听八方 er ting ba fang
+以眼还眼 yi yan huan yan
+以牙还牙 yi ya huan ya
+欲加之罪 yu jia zhi zui
+何患无辞 he huan wu ci
+鹬蚌相争 yu bang xiang zheng
+渔翁得利 yu weng de li
+知无不言 zhi wu bu yan
+言无不尽 yan wu bu jin
+种瓜得瓜 zhong gua de gua
+种豆得豆 zhong dou de dou
+司马昭之心 si ma zhao zhi xin
+路人皆知 lu ren jie zhi

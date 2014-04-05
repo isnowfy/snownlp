@@ -6,22 +6,18 @@ import re
 import codecs
 
 from . import zh
+from . import pinyin
 
 stop_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                          'stopwords.txt')
 pinyin_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                            'pinyin.txt')
 stop = set()
-pinyin = {}
 fr = codecs.open(stop_path, 'r', 'utf-8')
 for word in fr:
     stop.add(word.strip())
 fr.close()
-fr = codecs.open(pinyin_path, 'r', 'utf-8')
-for word in fr:
-    words = word.split()
-    pinyin[words[0]] = words[1:]
-fr.close()
+pin = pinyin.PinYin(pinyin_path)
 
 
 def filter_stop(words):
@@ -48,11 +44,5 @@ def get_sentences(doc):
     return sentences
 
 
-def get_pinyin(word):
-    if word in pinyin:
-        return pinyin[word]
-    ret = []
-    for w in word:
-        if w in pinyin:
-            ret += pinyin[w]
-    return ret
+def get_pinyin(sentence):
+    return pin.get(sentence)
