@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 import sys
+import gzip
 import marshal
 from math import log, exp
 
@@ -14,7 +15,7 @@ class Bayes(object):
         self.d = {}
         self.total = 0
 
-    def save(self, fname):
+    def save(self, fname, iszip=True):
         d = {}
         d['total'] = self.total
         d['d'] = {}
@@ -22,12 +23,26 @@ class Bayes(object):
             d['d'][k] = v.__dict__
         if sys.version_info[0] == 3:
             fname = fname + '.3'
-        marshal.dump(d, open(fname, 'wb'))
+        if not iszip:
+            marshal.dump(d, open(fname, 'wb'))
+        else:
+            f = gzip.open(fname, 'wb')
+            f.write(marshal.dumps(d))
+            f.close()
 
-    def load(self, fname):
+    def load(self, fname, iszip=True):
         if sys.version_info[0] == 3:
             fname = fname + '.3'
-        d = marshal.load(open(fname, 'rb'))
+        if not iszip:
+            d = marshal.load(open(fname, 'rb'))
+        else:
+            try:
+                f = gzip.open(fname, 'rb')
+                d = marshal.loads(f.read())
+            except IOError:
+                f = open(fname, 'rb')
+                d = marshal.loads(f.read())
+            f.close()
         self.total = d['total']
         self.d = {}
         for k, v in d['d'].items():

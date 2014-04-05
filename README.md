@@ -81,10 +81,15 @@ $ pip install snownlp
 以分词为例
 分词在`snownlp/seg`目录下
 ~~~~{python}
-from snownlp.seg.seg import Seg
-seg = Seg()
+from snownlp import seg
 seg.train('data.txt')
 seg.save('seg.marshal')
+#from snownlp import tag
+#tag.train('199801.txt')
+#tag.save('tag.marshal')
+#from snownlp import sentiment
+#sentiment.train('neg.txt', 'pos.txt')
+#sentiment.save('sentiment.marshal')
 ~~~~
 这样训练好的文件就存储为`seg.marshal`了，之后修改`snownlp/seg/__init__.py`里的`data_path`指向刚训练好的文件即可
 

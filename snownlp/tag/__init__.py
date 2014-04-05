@@ -12,8 +12,8 @@ tagger = TnT()
 tagger.load(data_path)
 
 
-def train(file_name):
-    fr = codecs.open(file_name, 'r', 'utf-8')
+def train(fname):
+    fr = codecs.open(fname, 'r', 'utf-8')
     data = []
     for i in fr:
         line = i.strip()
@@ -23,6 +23,14 @@ def train(file_name):
         data.append(tmp)
     fr.close()
     tagger.train(data)
+
+
+def save(fname, iszip=True):
+    tagger.save(fname, iszip)
+
+
+def load(fname, iszip=True):
+    tagger.load(fname, iszip)
 
 
 def tag_all(words):

@@ -22,8 +22,8 @@ class Seg(object):
     def load(self, fname, iszip=True):
         self.segger.load(fname, iszip)
 
-    def train(self, file_name):
-        fr = codecs.open(file_name, 'r', 'utf-8')
+    def train(self, fname):
+        fr = codecs.open(fname, 'r', 'utf-8')
         data = []
         for i in fr:
             line = i.strip()

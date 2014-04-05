@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 import os
+import codecs
 
 from .. import normal
 from .. import seg
@@ -16,11 +17,11 @@ class Sentiment(object):
     def __init__(self):
         self.classifier = Bayes()
 
-    def save(self, fname):
-        self.classifier.save(fname)
+    def save(self, fname, iszip=True):
+        self.classifier.save(fname, iszip)
 
-    def load(self, fname=data_path):
-        self.classifier.load(fname)
+    def load(self, fname=data_path, iszip=True):
+        self.classifier.load(fname, iszip)
 
     def handle(self, doc):
         words = seg.seg(doc)
@@ -44,6 +45,20 @@ class Sentiment(object):
 
 classifier = Sentiment()
 classifier.load()
+
+
+def train(neg_file, pos_file):
+    neg_docs = codecs.open(neg_file, 'r', 'utf-8').readlines()
+    pos_docs = codecs.open(pos_file, 'r', 'utf-8').readlines()
+    classifier.train(neg_docs, pos_docs)
+
+
+def save(fname, iszip=True):
+    classifier.save(fname, iszip)
+
+
+def load(fname, iszip=True):
+    classifier.load(fname, iszip)
 
 
 def classify(sent):

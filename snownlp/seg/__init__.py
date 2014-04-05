@@ -29,5 +29,17 @@ def seg(sent):
     return words
 
 
+def train(fname):
+    segger.train(fname)
+
+
+def save(fname, iszip=True):
+    segger.save(fname, iszip)
+
+
+def load(fname, iszip=True):
+    segger.load(fname, iszip)
+
+
 def single_seg(sent):
     return list(segger.seg(sent))
