@@ -50,6 +50,8 @@ classifier.load()
 def train(neg_file, pos_file):
     neg_docs = codecs.open(neg_file, 'r', 'utf-8').readlines()
     pos_docs = codecs.open(pos_file, 'r', 'utf-8').readlines()
+    global classifier
+    classifier = Sentiment()
     classifier.train(neg_docs, pos_docs)
 
 

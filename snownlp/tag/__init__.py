@@ -22,6 +22,8 @@ def train(fname):
         tmp = map(lambda x: x.split('/'), line.split())
         data.append(tmp)
     fr.close()
+    global tagger
+    tagger = TnT()
     tagger.train(data)
 
 

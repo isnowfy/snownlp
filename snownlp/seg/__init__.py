@@ -8,7 +8,7 @@ from . import seg as TnTseg
 
 data_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                          'seg.marshal')
-segger = TnTseg.Seg('other')
+segger = TnTseg.Seg()
 segger.load(data_path, True)
 
 
@@ -30,6 +30,8 @@ def seg(sent):
 
 
 def train(fname):
+    global segger
+    segger = TnTseg.Seg()
     segger.train(fname)
 
 
