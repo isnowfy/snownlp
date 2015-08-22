@@ -10,11 +10,11 @@ data_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                          'seg.marshal')
 segger = TnTseg.Seg()
 segger.load(data_path, True)
+re_zh = re.compile('([\u4E00-\u9FA5]+)')
 
 
 def seg(sent):
     words = []
-    re_zh = re.compile('([\u4E00-\u9FA5]+)')
     for s in re_zh.split(sent):
         s = s.strip()
         if not s:

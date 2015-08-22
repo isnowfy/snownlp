@@ -18,6 +18,7 @@ for word in fr:
     stop.add(word.strip())
 fr.close()
 pin = pinyin.PinYin(pinyin_path)
+re_zh = re.compile('([\u4E00-\u9FA5]+)')
 
 
 def filter_stop(words):
@@ -45,4 +46,16 @@ def get_sentences(doc):
 
 
 def get_pinyin(sentence):
-    return pin.get(sentence)
+    ret = []
+    for s in re_zh.split(sentence):
+        s = s.strip()
+        if not s:
+            continue
+        if re_zh.match(s):
+            ret += pin.get(s)
+        else:
+            for word in s.split():
+                word = word.strip()
+                if word:
+                    ret.append(word)
+    return ret
