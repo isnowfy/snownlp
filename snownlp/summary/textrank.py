@@ -79,14 +79,20 @@ class KeywordTextRank(object):
         for _ in range(self.max_iter):
             m = {}
             max_diff = 0
-            for k, v in self.words.items():
-                m[k] = 1-self.d
-                for j in v:
-                    if k == j or len(self.words[j]) == 0:
+            tmp = filter(lambda x: len(self.words[x[0]]) > 0,
+                         self.vertex.items())
+            tmp = sorted(tmp, key=lambda x: x[1] / len(self.words[x[0]]))
+            for k, v in tmp:
+                for j in self.words[k]:
+                    if k == j:
                         continue
-                    m[k] += (self.d/len(self.words[j])*self.vertex[j])
-                if abs(m[k] - self.vertex[k]) > max_diff:
-                    max_diff = abs(m[k] - self.vertex[k])
+                    if j not in m:
+                        m[j] = 1 - self.d
+                    m[j] += (self.d / len(self.words[k]) * self.vertex[k])
+            for k in self.vertex:
+                if k in m and k in self.vertex:
+                    if abs(m[k] - self.vertex[k]) > max_diff:
+                        max_diff = abs(m[k] - self.vertex[k])
             self.vertex = m
             if max_diff <= self.min_diff:
                 break

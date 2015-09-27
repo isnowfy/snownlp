@@ -74,7 +74,8 @@ class CharacterBasedGenerativeModel(object):
         tl1 = 0.0
         tl2 = 0.0
         tl3 = 0.0
-        for now in self.tri.samples():
+        samples = sorted(self.tri.samples(), key=lambda x: self.tri.get(x)[1])
+        for now in samples:
             c3 = self.div(self.tri.get(now)[1]-1, self.bi.get(now[:2])[1]-1)
             c2 = self.div(self.bi.get(now[1:])[1]-1, self.uni.get(now[1])[1]-1)
             c1 = self.div(self.uni.get(now[2])[1]-1, self.uni.getsum()-1)
@@ -101,6 +102,18 @@ class CharacterBasedGenerativeModel(object):
         now = [((('', 'BOS'), ('', 'BOS')), 0.0, [])]
         for w in data:
             stage = {}
+            not_found = True
+            for s in self.status:
+                if self.uni.freq((w, s)) != 0:
+                    not_found = False
+                    break
+            if not_found:
+                for s in self.status:
+                    for pre in now:
+                        stage[(pre[0][1], (w, s))] = (pre[1], pre[2]+[s])
+                now = list(map(lambda x: (x[0], x[1][0], x[1][1]),
+                               stage.items()))
+                continue
             for s in self.status:
                 for pre in now:
                     p = pre[1]+self.log_prob(pre[0][0], pre[0][1], (w, s))

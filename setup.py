@@ -45,7 +45,7 @@ def read(fname):
 
 setup(
     name='snownlp',
-    version='0.12.2',
+    version='0.12.3',
     description='Python library for processing Chinese text',
     author='isnowfy',
     url='https://github.com/isnowfy/snownlp',
