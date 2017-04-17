@@ -1,4 +1,4 @@
-#SnowNLP: Simplified Chinese Text Processing
+# SnowNLP: Simplified Chinese Text Processing
 
 SnowNLP是一个python写的类库，可以方便的处理中文文本内容，是受到了[TextBlob](https://github.com/sloria/TextBlob)的启发而写的，由于现在大部分的自然语言处理库基本都是针对英文的，于是写了一个方便处理中文的类库，并且和TextBlob不同的是，这里没有用NLTK，所有的算法都是自己实现的，并且自带了一些训练好的字典。注意本程序都是处理的unicode编码，所以使用时请自行decode成unicode。
 
@@ -84,12 +84,12 @@ $ pip install snownlp
 from snownlp import seg
 seg.train('data.txt')
 seg.save('seg.marshal')
-#from snownlp import tag
-#tag.train('199801.txt')
-#tag.save('tag.marshal')
-#from snownlp import sentiment
-#sentiment.train('neg.txt', 'pos.txt')
-#sentiment.save('sentiment.marshal')
+# from snownlp import tag
+# tag.train('199801.txt')
+# tag.save('tag.marshal')
+# from snownlp import sentiment
+# sentiment.train('neg.txt', 'pos.txt')
+# sentiment.save('sentiment.marshal')
 ~~~~
 这样训练好的文件就存储为`seg.marshal`了，之后修改`snownlp/seg/__init__.py`里的`data_path`指向刚训练好的文件即可
 
