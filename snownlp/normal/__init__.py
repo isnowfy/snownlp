@@ -22,7 +22,15 @@ re_zh = re.compile('([\u4E00-\u9FA5]+)')
 
 
 def filter_stop(words):
-    return list(filter(lambda x: x not in stop, words))
+    result = []
+    for w in words:
+        has_stop = False
+        for s in stop:
+            if s in w:
+                has_stop = True
+        if has_stop is False:
+            result.append(w)
+    return result
 
 
 def zh2hans(sent):
