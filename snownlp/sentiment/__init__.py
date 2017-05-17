@@ -48,8 +48,14 @@ classifier.load()
 
 
 def train(neg_file, pos_file):
-    neg_docs = codecs.open(neg_file, 'r', 'utf-8').readlines()
-    pos_docs = codecs.open(pos_file, 'r', 'utf-8').readlines()
+    neg = codecs.open(neg_file, 'r', 'utf-8').readlines()
+    pos = codecs.open(pos_file, 'r', 'utf-8').readlines()
+    neg_docs = []
+    pos_docs = []
+    for line in neg:
+        neg_docs.append(line.rstrip("\r\n"))
+    for line in pos:
+        pos_docs.append(line.rstrip("\r\n"))
     global classifier
     classifier = Sentiment()
     classifier.train(neg_docs, pos_docs)
