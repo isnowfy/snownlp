@@ -44,12 +44,10 @@ class AddOneProb(BaseProb):
         self.none = 1
 
     def add(self, key, value):
-        self.total += value
         if not self.exists(key):
-            self.d[key] = 1
-            self.total += 1
+            self.d[key] = 0
+        self.total += value
         self.d[key] += value
-
 
 class GoodTuringProb(BaseProb):
 
