@@ -40,7 +40,7 @@ class Sentiment(object):
         ret, prob = self.classifier.classify(self.handle(sent))
         if ret == 'pos':
             return prob
-        return 1-prob
+        return (-1)*prob
 
 
 classifier = Sentiment()
