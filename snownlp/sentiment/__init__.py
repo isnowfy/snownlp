@@ -38,9 +38,10 @@ class Sentiment(object):
 
     def classify(self, sent):
         ret, prob = self.classifier.classify(self.handle(sent))
-        if ret == 'pos':
-            return prob
-        return 1-prob
+        if prob <= 0.7:
+            return ('neu', prob)
+        else:
+            return (ret, prob)
 
 
 classifier = Sentiment()
