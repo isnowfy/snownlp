@@ -43,10 +43,10 @@ class TextRank(object):
         self.top = sorted(self.top, key=lambda x: x[1], reverse=True)
 
     def top_index(self, limit):
-        return list(map(lambda x: x[0], self.top))[:limit]
+        return sorted(list(map(lambda x: x[0], self.top))[:limit])
 
     def top(self, limit):
-        return list(map(lambda x: self.docs[x[0]], self.top))
+        return sorted(list(map(lambda x: self.docs[x[0]], self.top)))
 
 
 class KeywordTextRank(object):
